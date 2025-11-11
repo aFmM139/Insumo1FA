@@ -22,6 +22,7 @@ In the output of this command/task, you'll find options to open the app in a
 
 You'll also find options to open the app's developer menu, reload the app, and more.
 
+
 #### Web
 
 Web previews will be started and managred automatically. Use the toolbar to manually refresh.
@@ -51,3 +52,12 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+
+
+
+Video de demostración:
+
+https://github.com/user-attachments/assets/b92f9de4-e02d-4fa9-b9ad-1da2c686b92a
+
+
