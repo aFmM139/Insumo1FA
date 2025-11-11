@@ -1,40 +1,72 @@
-//Añadimos importanciones necesarias
-import React from "react";
-import CustomText from "@/components/CustomText";
-import CustomInput from "@/components/CustomInput";
 import CustomButton from "@/components/CustomButton";
+import CustomInput from "@/components/CustomInput";
+import CustomText from "@/components/CustomText";
+import { loginSchema, type LoginFormData } from "@/lib/schema/TextSchema";
 import "@/global.css";
-import { View, Alert, Pressable } from "react-native";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Alert, Pressable, View } from "react-native";
+import { ZodError } from "zod";
 
-// Defino los tipos de las props
 type LoginFormProps = {
   onLoginPress: () => void;
   onSwitchToRegister: () => void;
 };
 
-//Funcion para mandar aletaras en el inicio de sesion
+type FieldErrors = {
+  [K in keyof LoginFormData]?: string;
+};
+
 export default function LoginForm({ onLoginPress, onSwitchToRegister }: LoginFormProps){
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState<LoginFormData>({
+    email: "",
+    password: ""
+  });
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<FieldErrors>({});
 
-  const handleLogin = () => {
-    if (!email || !password) {
-      Alert.alert("Error", "Por favor completa todos los campos");//Cuando se intente inciar sesion pero no se ingrese ningun dato
-      return;
+  // Actualizar campo y limpiar su error
+  const updateField = (field: keyof LoginFormData, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }));
     }
-    
-    console.log("Login:", { email, password });
-    Alert.alert("Éxito", `Bienvenido ${email}`);//Cuando se ingrese correctamente los datos
+  };
 
-    onLoginPress();
+  const handleLogin = async () => {
+    try {
+      // Validar con Zod
+      const validatedData = loginSchema.parse(formData);
+      
+      setLoading(true);
+      
+      // Simular llamada API (reemplazar con tu lógica real)
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      console.log("Login exitoso:", validatedData);
+      Alert.alert("Éxito", `Bienvenido ${validatedData.email}`);
+      onLoginPress();
+      
+    } catch (error) {
+      if (error instanceof ZodError) {
+        // Convertir errores de Zod a formato de objeto
+        const fieldErrors: FieldErrors = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            fieldErrors[err.path[0] as keyof LoginFormData] = err.message;
+          }
+        });
+        setErrors(fieldErrors);
+      } else {
+        Alert.alert("Error", "Hubo un problema al iniciar sesión");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    //Agregar los colores de fondo a las paginas
-    <View className="bg-[#E3C69F] w-screen h-screen flex justify-center items-center">
-      <View className="w-4/5 max-w-md">
-        {/* Títulos para la bienvenida de la app */}
+    <View className="bg-[#2D9966] w-screen h-screen flex justify-center items-center">
+      <View className="m-2 border-black border-4 shadow-2xl shadow-black p-4 rounded-lg bg-white w-4/5 max-w-md">
         <View className="mb-8">
           <CustomText variant="large" dark={true}>
             Bienvenido
@@ -45,7 +77,6 @@ export default function LoginForm({ onLoginPress, onSwitchToRegister }: LoginFor
           </CustomText>
         </View>
 
-    {/* Parte para ingresar el correo electronico */}
         <View className="mb-4">
           <CustomText variant="small" dark={true}>
             Correo Electrónico
@@ -53,14 +84,15 @@ export default function LoginForm({ onLoginPress, onSwitchToRegister }: LoginFor
           <View className="h-2"></View>
           <CustomInput
             placeholder="ejemplo@correo.com"
-            value={email}
-            onChangeText={setEmail}
+            value={formData.email}
+            onChangeText={(text) => updateField("email", text)}
             keyboardType="email-address"
             autoCapitalize="none"
+            error={!!errors.email}
+            errorMessage={errors.email}
           />
         </View>
 
-    {/* Parte para ingresar la contraseña */}
         <View className="mb-6">
           <CustomText variant="small" dark={true}>
             Contraseña
@@ -68,25 +100,29 @@ export default function LoginForm({ onLoginPress, onSwitchToRegister }: LoginFor
           <View className="h-2"></View>
           <CustomInput
             placeholder="••••••••"
-            value={password}
-            onChangeText={setPassword}
+            value={formData.password}
+            onChangeText={(text) => updateField("password", text)}
             secureTextEntry={true}
+            error={!!errors.password}
+            errorMessage={errors.password}
           />
         </View>
 
-    {/* Boton de inciar sesion */}
-        <CustomButton onPress={handleLogin}>
+        <CustomButton 
+          onPress={handleLogin}
+          loading={loading}
+        >
           Iniciar Sesión
         </CustomButton>
 
-    {/* Texto que indica un ¿olvidaste tu contraseña? */}
         <View className="mt-4 items-center">
-          <CustomText variant="small" dark={true}>
-            ¿Olvidaste tu contraseña?
-          </CustomText>
+          <Pressable>
+            <CustomText variant="small" dark={true}>
+              ¿Olvidaste tu contraseña?
+            </CustomText>
+          </Pressable>
         </View>
 
-    {/* Texto que indica un ¿No tienes cuenta? Regístrate */}
         <View className="items-center mt-3">
           <Pressable onPress={onSwitchToRegister}>
             <CustomText variant="small" dark={true}>
@@ -98,5 +134,3 @@ export default function LoginForm({ onLoginPress, onSwitchToRegister }: LoginFor
     </View>
   );
 }
-
-

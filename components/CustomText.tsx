@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 interface CustomTextProps{
-    variant:"small"|"medium"|"large"; //tamaño del texto
+    variant:"small"|"medium"|"large"|"title"|"name"|"nivel"; //tamaño del texto
     dark?:boolean;// Color claro u oscuro
     children: React.ReactNode;//Va dentro de la etiqueta
 }
@@ -19,7 +19,7 @@ function styleSelector(variant:any,dark:boolean){
     if(dark == false){
         style += "text-white "
     }else{
-        style += "text-[#0F626F] "
+        style += "text-[#0F172B] "
     }
     
     switch(variant){
@@ -29,6 +29,12 @@ function styleSelector(variant:any,dark:boolean){
             return style + "font-semibold text-base" ;
         case "large":
             return style + " font-semibold text-xl" ;
+        case "title":
+            return style + " font-semibold text-3xl text-center " ;
+        case "name":
+            return style + " mt-2 font-semibold text-xl text-center" ;
+        case "nivel":
+            return style + " font-semibold text-base text-center text-[#CAD5E2]" ;
     }
 }
 

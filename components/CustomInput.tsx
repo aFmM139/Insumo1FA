@@ -1,4 +1,4 @@
-import { TextInput } from 'react-native';
+import { TextInput, View, Text } from 'react-native';
 import React from 'react';
 
 interface CustomInputProps {
@@ -8,6 +8,8 @@ interface CustomInputProps {
   secureTextEntry?: boolean;
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
+  error?: boolean;
+  errorMessage?: string;
 }
 
 const CustomInput = ({
@@ -16,21 +18,31 @@ const CustomInput = ({
   onChangeText,
   secureTextEntry = false,
   keyboardType = 'default',
-  autoCapitalize = 'sentences'
+  autoCapitalize = 'sentences',
+  error = false,
+  errorMessage
 }: CustomInputProps) => {
   return (
-    <TextInput
-      placeholder={placeholder}
-      value={value}
-      onChangeText={onChangeText}
-      secureTextEntry={secureTextEntry}
-      keyboardType={keyboardType}
-      autoCapitalize={autoCapitalize}
-      className="bg-white rounded-lg p-4 text-base"
-      placeholderTextColor="#999"
-    />
+    <View>
+      <TextInput
+        placeholder={placeholder}
+        value={value}
+        onChangeText={onChangeText}
+        secureTextEntry={secureTextEntry}
+        keyboardType={keyboardType}
+        autoCapitalize={autoCapitalize}
+        className={`bg-white rounded-lg p-4 text-base border-2 ${
+          error ? 'border-red-500' : 'border-black'
+        }`}
+        placeholderTextColor="#999"
+      />
+      {error && errorMessage && (
+        <Text className="text-red-500 text-xs mt-1 ml-1">
+          {errorMessage}
+        </Text>
+      )}
+    </View>
   );
 };
 
 export default CustomInput;
-
