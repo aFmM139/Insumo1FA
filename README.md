@@ -1,63 +1,21 @@
-> Edited for use in IDX on 07/09/12
+!Bienvenido a tusk and task o tambien conocido como TAT😍😍😍
 
-# Welcome to your Expo app 👋
+📱Esta es tu app de tareas favorita totalmente desarrollada con expo 📱
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+PERO....
 
-## Get started
+¿Qué es "TAT"?
+![KjhGIF](https://github.com/user-attachments/assets/0aa8f362-ecb5-4d74-b490-43803eef9d5f)
 
-#### Android
+Pues TAT es una aplicación desarrollada especialmente para el manejo de tareas en cualquir ambito, ya sea educativo como personal,
+este solo sirve para darte a ti una lista en digital de tareas que tu pongas 😘.
 
-Android previews are defined as a `workspace.onStart` hook and started as a vscode task when the workspace is opened/started.
+TAT esta totalmente desarrollado con EXPO + React-Native. Su UI esta diseñada con ayuda de nativeWind y usando iconos de LUCIDE.
+Esta hecha en modo oscuro para que asi no te tengas que preocupar tus ojos 👁️.
 
-Note, if you can't find the task, either:
-- Rebuild the environment (using command palette: `IDX: Rebuild Environment`), or
-- Run `npm run android -- --tunnel` command manually run android and see the output in your terminal. The device should pick up this new command and switch to start displaying the output from it.
+Tambien utilice el API de JSON-SERVER para poder alojar los datos que vamos a ir recibiendo por el usuario.
 
-In the output of this command/task, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You'll also find options to open the app's developer menu, reload the app, and more.
-
-
-#### Web
-
-Web previews will be started and managred automatically. Use the toolbar to manually refresh.
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-
-
-
-
-Video de demostración:
-
+A continuación te dejo un video demostrativo de mi APP:
 https://github.com/user-attachments/assets/b92f9de4-e02d-4fa9-b9ad-1da2c686b92a
 
 
