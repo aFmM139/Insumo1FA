@@ -16,6 +16,7 @@ Esta hecha en modo oscuro para que asi no te tengas que preocupar tus ojos 👁�
 Tambien utilice el API de JSON-SERVER para poder alojar los datos que vamos a ir recibiendo por el usuario.
 
 A continuación te dejo un video demostrativo de mi APP:
+
 https://github.com/user-attachments/assets/b92f9de4-e02d-4fa9-b9ad-1da2c686b92a
 
 
